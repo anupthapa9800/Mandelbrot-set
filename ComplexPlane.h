@@ -2,14 +2,17 @@
 
 #include <SFML/Graphics.hpp>
 #include <complex>
+#include <thread> // Added for multithreading
 
-using namespace sf; // Use the SFML namespace globally
+using namespace sf;
 
 // Declare the global constants
 const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
+// Define the number of threads to use (e.g., matching common core counts)
+const unsigned int NUM_THREADS = 8;
 
 // Declare an enum class type named State
 enum class State { CALCULATING, DISPLAYING };
@@ -31,6 +34,9 @@ private:
     void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
     Vector2f mapPixelToCoords(Vector2i mousePixel);
 
+    // NEW: Function to calculate a specific horizontal strip of the screen
+    void calculateStrip(int startRow, int endRow);
+
     // Override the virtual draw function from sf::Drawable
     virtual void draw(RenderTarget& target, RenderStates states) const;
 
@@ -42,5 +48,5 @@ public:
     void setCenter(Vector2i mousePixel);
     void setMouseLocation(Vector2i mousePixel);
     void loadText(Text& text);
-    void updateRender();
+    void updateRender(); // This will be the thread orchestrator
 };

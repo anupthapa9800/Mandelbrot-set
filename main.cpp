@@ -25,9 +25,10 @@ int main()
     // Construct the Font and Text objects
     Font font;
    
-    if (!font.loadFromFile("arial.ttf"))
+    //if (!font.loadFromFile("arial.ttf"))
+    if(!font.loadFromFile("KOMIKAP_.ttf"))
     {
-        cerr << "Error loading font file! Make sure 'arial.ttf' is in the executable directory." << std::endl;
+        cout << "Error loading font file!" << endl;
         return -1;
     }
     Text text;
