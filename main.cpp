@@ -1,3 +1,4 @@
+// Member: Anup Jung Thapa and William Li
 #include <SFML/Graphics.hpp>
 #include "ComplexPlane.h"
 #include <iostream>
